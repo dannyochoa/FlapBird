@@ -11,6 +11,15 @@
   <body id="colorBody">
     <canvas id="canvas" width="288" height="512"></canvas>
 
+    <div class="buttons">
+      <div class="left-half">
+        <button type="button" class="btn btn-warning btn-lg" onclick="draw()">Start</button>
+      </div>
+       <div class="right-half">
+         <button type="button" class="btn btn-warning btn-lg" onclick="moveUp()">Jump</button>
+       </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="restartModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -49,14 +58,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="buttons">
-      <div class="left-half">
-        <button type="button" class="btn btn-warning btn-lg" onclick="draw()">Start</button>
-      </div>
-       <div class="right-half">
-         <button type="button" class="btn btn-warning btn-lg" onclick="moveUp()">Jump</button>
-       </div>
     </div>
     <script src="script.js"></script>
   </body>

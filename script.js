@@ -1,7 +1,5 @@
-
-
-var cvs = document.getElementById("canvas");
-var ctx = cvs.getContext("2d");
+var canvas = document.getElementById("canvas");
+var canvasContext = canvas.getContext("2d");
 
 //audio files
 var fly = new Audio();
@@ -29,64 +27,54 @@ var i2 = 0;
 var i3 = 0;
 var i4 = 0;
 var i5 = 0;
-var i6 = 0;
-var i7 = 0;
 
-
-  bg.onload = function(e) {
-    i1 = 1;
-    if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
-      // draw();
-      start();
-    }
+bg.onload = function(e) {
+  i1 = 1;
+  if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
+    start();
   }
-  
-  pipeNorth.onload = function(e) {
-    i2 = 1;
-    if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
-      // draw();
-      start();
-    }
-  }
+}
 
-  pipeSouth.onload = function(e) {
-    i3 = 1
-    if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
-      // draw();
-      start();
-    }
+pipeNorth.onload = function(e) {
+  i2 = 1;
+  if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
+    start();
   }
+}
 
-  fg.onload = function(e) {
-    i4 = 1;
-    if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
-      // draw();
-      start();
-    }
+pipeSouth.onload = function(e) {
+  i3 = 1
+  if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
+    start();
   }
+}
 
-  bird.onload = function(e) {
-    i5 = 1;
-    if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
-      // draw();
-      start();
-    }
+fg.onload = function(e) {
+  i4 = 1;
+  if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
+    start();
   }
+}
 
+bird.onload = function(e) {
+  i5 = 1;
+  if(i1 == 1 && i2 == 1 && i3 == 1 && i4 == 1 && i5 == 1){
+    start();
+  }
+}
 
 // // some variables
 var gap = 80;
 var constant = pipeNorth.height+gap;
 
-var bx = 10;
-var by = 150;
+var birdX = 10;
+var birdY = 150;
 
 var gravity = parseInt(document.getElementById("gravity").value, 10);
 var speed = parseInt(document.getElementById("speed").value, 10);
 var pipeSpawn = 125;
 var coin = 5;
 var jump = 25;
-
 
 var score = 0;
 var highScore = 0;
@@ -101,49 +89,50 @@ document.addEventListener('keypress', function (e) {
       moveUp();
     }
 });
+
 function moveUp(){
-  by -= jump;
+  birdY -= jump;
   fly.play();
 }
 
 // pipe coordinates
 var pipe = [];
 pipe[0] = {
-  x : cvs.width,
+  x : canvas.width,
   y : 0
 };
 
 function start(){
-  ctx.drawImage(bg, 0, 0);
-  ctx.drawImage(pipeNorth, 125, 0);
+  canvasContext.drawImage(bg, 0, 0);
+  canvasContext.drawImage(pipeNorth, 125, 0);
   constant = pipeNorth.height+gap;
-  ctx.drawImage(pipeSouth, 125, constant);
-  ctx.drawImage(fg, 0,cvs.height - fg.height);
-  ctx.drawImage(bird, bx, by);
-  ctx.fillStyle = "*000";
-  ctx.font = "20px Verdana";
-  ctx.fillText("Press Enter to Start", 40, 290);
+  canvasContext.drawImage(pipeSouth, 125, constant);
+  canvasContext.drawImage(fg, 0,canvas.height - fg.height);
+  canvasContext.drawImage(bird, birdX, birdY);
+  canvasContext.fillStyle = "*000";
+  canvasContext.font = "20px Verdana";
+  canvasContext.fillText("Press Enter to Start", 40, 290);
 }
 
 // draw images
 function draw(){
-  ctx.drawImage(bg, 0, 0);
+  canvasContext.drawImage(bg, 0, 0);
 
   for(var i = 0; i < pipe.length; i++ ){
-    ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
+    canvasContext.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
     constant = pipeNorth.height+gap;
-    ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y+constant);
+    canvasContext.drawImage(pipeSouth, pipe[i].x, pipe[i].y+constant);
 
     pipe[i].x -= speed;
     if(pipe[i].x == pipeSpawn){
       pipe.push({
-        x : cvs.width,
+        x : canvas.width,
         y : Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height
       });
     }
 
     // detect collision
-    if( bx + bird.width >= pipe[i].x && bx <= pipe[i].x + pipeNorth.width && (by <= pipe[i].y + pipeNorth.height || by + bird.height >= pipe[i].y+ constant) || by + bird.height >= cvs.height - fg.height){
+    if( birdX + bird.width >= pipe[i].x && birdX <= pipe[i].x + pipeNorth.width && (birdY <= pipe[i].y + pipeNorth.height || birdY + bird.height >= pipe[i].y+ constant) || birdY + bird.height >= canvas.height - fg.height){
       // location.reload();
       death.play();
       alive = false;
@@ -162,15 +151,15 @@ function draw(){
 
   }
 
-  ctx.drawImage(fg, 0,cvs.height - fg.height);
+  canvasContext.drawImage(fg, 0,canvas.height - fg.height);
 
-  ctx.drawImage(bird, bx, by);
+  canvasContext.drawImage(bird, birdX, birdY);
 
-  by += gravity;
+  birdY += gravity;
 
-  ctx.fillStyle = "*000";
-  ctx.font = "20px Verdana";
-  ctx.fillText("Score : " + score, 10, cvs.height - 20);
+  canvasContext.fillStyle = "*000";
+  canvasContext.font = "20px Verdana";
+  canvasContext.fillText("Score : " + score, 10, canvas.height - 20);
   if(alive)
     requestAnimationFrame(draw);
 }
@@ -178,11 +167,11 @@ function draw(){
 function restart(){
   alive = true; 
   score = 0;
-  bx = 10;
-  by = 150;
+  birdX = 10;
+  birdY = 150;
   pipe = [];
   pipe[0] = {
-    x : cvs.width,
+    x : canvas.width,
     y : 0
   };
  start();
