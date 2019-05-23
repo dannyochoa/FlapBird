@@ -1,0 +1,43 @@
+/* Pattern styles */
+.left-half {
+  padding-left: 15px;
+  float: left;
+  width: 45%;
+}
+.right-half {
+  padding-left: 50px;
+  float: left;
+  width: 45%;
+}
+
+.settings {
+ padding-left: 30px;
+ padding-right: 30px;
+}
+
+.restart-button {
+  padding-left: 40%;
+}
+
+#canvas {
+  position: fixed; /* or absolute */
+  top: 20%;
+  left: 40%;
+}
+
+#colorBody {
+  background-color: lightblue;
+}
+
+.buttons {
+  position: fixed; /* or absolute */
+  top: 85%;
+  left: 40%;
+}
+
+#title {
+  position: fixed;
+  width: 20%;
+  height:20%;
+  left: 50%;
+}

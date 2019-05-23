@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body id="colorBody">
+    <canvas id="canvas" width="288" height="512"></canvas>
+
+    <!-- Modal -->
+    <div class="modal fade" id="restartModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="left-half">
+              <h5 class="modal-title" id="finalScore">Final Score : </h5>
+            </div>
+            <div class="right-half">
+              <h5 class="modal-title" id="bestScore">Best Score :</h5>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="settings">
+              <label for="gravity">Gravity</label>
+              <input type="range" class="custom-range" min="1" max="3" id="gravity" value = 1>
+
+              <label for="jump">Jump</label>
+              <input type="range" class="custom-range" min="1" max="3" id="jump" value = 1>
+
+
+              <label for="speed">Speed</label>
+              <input type="range" class="custom-range" min="1" max="3" id="speed" value = 1>
+
+              <label for="gap">Gap</label>
+              <input type="range" class="custom-range" min="1" max="3" id="gap" value = 1>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="restart-button">
+              <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal"
+              onClick="restart()">Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <div class="left-half">
+        <button type="button" class="btn btn-warning btn-lg" onclick="draw()">Start</button>
+      </div>
+       <div class="right-half">
+         <button type="button" class="btn btn-warning btn-lg" onclick="moveUp()">Jump</button>
+       </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
